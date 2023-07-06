@@ -1,0 +1,51 @@
+show databases;
+create database BooksDB;
+use BooksDB;
+
+create table Books(
+s_no int primary key,
+ book_title varchar(20),
+ author_name varchar(20),
+ genre varchar(20),
+ publication_year int,
+ price int);
+ INSERT INTO Books values(1,"Cindrella","Walter Eilas Disney","Cartoon",1997,5000);
+ INSERT INTO Books values(2,"Zombie","Hitler","Horror",1987,500);
+ INSERT INTO Books values(3,"Life of Pie","Mary Comb","Life lesson",2007,2000);
+ INSERT INTO Books values(4,"Life of Lord","Prince Jack","Fiction",1907,4000);
+ INSERT INTO Books values(5,"World tour","William","action",2002,5500);
+ INSERT INTO Books values(6,"Poppins","Wright Brothers","Cartoon",2010,3000);
+ 
+ create table Author(
+se_no int primary key,
+		    author_age int,
+			author_native varchar(50),
+			author_name varchar(60),
+			s_no int,
+		    constraint fk_s_no foreign key(s_no) references Books(s_no));
+            
+INSERT INTO Author VALUES(1,20,"Dubai","William",5);
+INSERT INTO Author VALUES(2,25,"Bombay","Zombie",2);
+INSERT INTO Author VALUES(3,30,"Sidney","Walter Elias Disney",1);
+INSERT INTO Author VALUES(4,40,"Darjiling","Wright Brothers",6);
+drop table author;
+
+select*from books;
+
+select *from books
+where book_title="Life of Lord";
+
+update Books
+set price =4000
+where  s_no=3;
+
+delete from books
+where book_title="Zombie";
+
+select avg(price)from books;
+
+select*from books;
+select Books.s_no,Books.book_title,
+books.genere,books.publication_year,books.price,
+authors.author_name,authors.author_native,authors.author_age from books
+join authors on Books.s_no=authors.s_no;
